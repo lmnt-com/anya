@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 10px;
+  width: 600px;
+}
+
+img.logo {
+  height: 48px;
+  width: 132px;
+}
+
+img.anya {
+  float: right;
+  height: 128px;
+  width: 128px;
+  margin: 5px;
+}
+
+#lmnt_api_key {
+  font-family: 'Courier New', monospace;
+  margin-left: 0.5em;
+  width: 300px;
+}
+
+#save, #status {
+  margin-top: 0.5em;
+}
+
+</style>
+<title>LMNT character.ai Speech Extension Options</title>
+</head>
+<body>
+  <div>
+    <a href="https://www.lmnt.com" target="_blank"><img src="./images/lmnt-logo.png" class="logo" alt="LMNT, Inc. Logo"></a>
+  </div>
+    <h1>LMNT character.ai Speech Extension Options</h1>
+  <img src="./images/icon-128.png" alt="A sci-fi woman's profile image." class="anya">
+  <p>
+    The LMNT character.ai extension is developed solely for entertainment purposes and is not affiliated with <a href="https://www.character.ai" target="_blank">character.ai</a>.
+    It is intended to allow folks to experiment with the use of <a href="https://www.lmnt.com" target="_blank">LMNT-produced</a> AI-based synthetic speech to talk with their favorite characters.
+  </p>
+
+  <p>
+    For the extension to operate, you'll need an LMNT API key. Please visit the
+    <a href="https://app.lmnt.com/account" target="_blank">LMNT account page</a>, create a new API key, copy the key
+    and paste it into the field below.
+  </p>
+
+  <form>
+    <label for="lmnt_api_key">LMNT API Key</label>
+    <input name="lmnt_api_key" id="lmnt_api_key">
+  </form>
+  <button id="save">Save</button>
+
+  <div id="status"></div>
+
+<script src="scripts/options.js"></script>
+</body>
+</html>
