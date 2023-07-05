@@ -9,9 +9,9 @@ doing is pretty cool).
 
 ## Installation
 
-The extension is available for installation on the [Chrome Web Store](https://chrome.google.com/webstore/detail/lmnt-characterai-speech/ialccdnpplkohhpageabcfmffgdmhhkm). You can also install it in the Chrome web browser as a Developer-mode "unpacked extension" via:
+The extension is available for installation on the [Chrome Web Store](https://chrome.google.com/webstore/detail/lmnt-characterai-speech/ialccdnpplkohhpageabcfmffgdmhhkm). You can also install it in the Chrome web browser as a Developer-mode "unpacked extension", steps as:
 
-- checking out this repository
+- check out this repository
 - visit [chrome://extensions](chrome://extensions)
 - turn on 'Developer Mode' in the top right
 - use the 'Load unpacked' button in the top left to select the `anya` directory
