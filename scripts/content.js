@@ -8,12 +8,19 @@ const LMNT_AUDIO_CSS_CLASS = 'lmnt-audio';
 const TICK_DELAY = 1000;
 const LONG_TICK_DELAY = 5000;
 
+const VOICE_ID_LMNT_CHOOSES = 'lmnt-chooses';
+
 let lmntApiKey = '';
-chrome.storage.sync.get(["lmnt_api_key"]).then((result) => {
+let defaultVoiceId = VOICE_ID_LMNT_CHOOSES;
+
+chrome.storage.sync.get(['lmnt_api_key', 'default_voice_id']).then((result) => {
   setLmntApiKey(result.lmnt_api_key);
   if (!lmntApiKey) {
     // console.log('No LMNT api key, opening options page.');
     chrome.runtime.sendMessage("showOptions");
+  }
+  if (result.default_voice_id) {
+    setDefaultVoiceId(result.default_voice_id);
   }
   setTimeout(tick, TICK_DELAY);
 });
@@ -22,11 +29,24 @@ function setLmntApiKey(key) {
   lmntApiKey = key || '';
 };
 
+function setDefaultVoiceId(voiceId) {
+  // console.log(`setDefaultVoiceId [voiceId=${voiceId}].`);
+  defaultVoiceId = voiceId || VOICE_ID_LMNT_CHOOSES;
+  // Reset the last character name so that we'll recompute the voice.
+  lastCharacterName = '';
+};
+
 // Watch for changes to the user's options and apply them.
 chrome.storage.onChanged.addListener((changes, area) => {
-  if (area === 'sync' && changes.lmnt_api_key) {
-    const newKey = changes.lmnt_api_key.newValue;
-    setLmntApiKey(newKey);
+  if (area != sync) {
+    return;
+  }
+
+  if (changes.lmnt_api_key) {
+    setLmntApiKey(changes.lmnt_api_key.newValue);
+
+  } else if (changes.default_voice_id) {
+    setDefaultVoiceId(changes.default_voice_id.newValue);
   }
 });
 
@@ -93,10 +113,14 @@ async function computeVoice(lmntApiKey, lastCharacterName, lastSelectedVoice) {
         if (selectedVoice) {
           console.log(`Selected custom voice [name=${characterName}, voice=${selectedVoice}].`)
         } else {
-          const response = await ohOracleOfTheLakeWhatIsYourWisdom(lmntApiKey, characterName)
-          selectedVoice = response["voice_id"]
-
-          console.log(`Oracle selected voice [name=${characterName}, voice=${selectedVoice}].`)
+          selectedVoice = defaultVoiceId;
+          if (selectedVoice == VOICE_ID_LMNT_CHOOSES) {
+            const response = await ohOracleOfTheLakeWhatIsYourWisdom(lmntApiKey, characterName)
+            selectedVoice = response["voice_id"]
+            console.log(`Oracle selected voice [name=${characterName}, voice=${selectedVoice}].`)
+          } else {
+            console.log(`Selected default voice [name=${characterName}, voice=${selectedVoice}].`)
+          }
         }
       } else {
         selectedVoice = lastSelectedVoice;
