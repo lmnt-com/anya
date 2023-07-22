@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "LMNT character.ai Speech",
-    "version": "1.0",
+    "version": "1.1",
     "description": "Bring speech to your character.ai friends.",
     "icons": {
         "16": "images/icon-16.png",
