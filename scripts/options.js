@@ -11,9 +11,11 @@ const saveOptions = () => {
     () => {
       // Update status to let user know options were saved.
       const status = document.getElementById('status');
-      status.textContent = 'Options saved.';
+      status.textContent = 'Saved successfully.';
       if (lmnt_api_key.length > 0) {
         maybePopulateVoices(lmnt_api_key);
+      } else {
+        document.getElementById('voiceOptions').style.display = 'none';
       }
       setTimeout(() => {
         status.textContent = '';
@@ -56,7 +58,7 @@ const fetchVoices = async (apiKey) => {
 
 const maybeAddVoiceOptions = async () => {
   if (Object.keys(availableVoices).length == 0) {
-    document.getElementById('voiceOptions').style.display = 'hidden';
+    document.getElementById('voiceOptions').style.display = 'none';
     return;
   }
 
