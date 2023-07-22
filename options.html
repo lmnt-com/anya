@@ -5,8 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
 body {
   font-family: 'Roboto', sans-serif;
-  margin: 10px;
-  width: 600px;
+  font-size: 14px;
 }
 
 img.logo {
@@ -23,47 +22,122 @@ img.anya {
 
 #lmnt_api_key {
   font-family: 'Courier New', monospace;
-  margin-left: 0.5em;
+  margin-left: 8px;
   width: 300px;
 }
 
-#save, #status {
-  margin-top: 0.5em;
+.centered {
+  margin: 24px auto;
+  max-width: 600px;
+}
+
+.section {
+  margin-bottom: 16px;
+}
+
+.disclaimer, #status {
+  font-style: italic;
+}
+
+.step .headline {
+  font-weight: bold;
+  font-size: 22px;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.step {
+  margin-top: 40px;
+}
+
+.headline .number {
+  border-radius: 40px;
+  background: #1689d6;
+  width: 22px;
+  height: 19px;
+  text-align: center;
+  font-size: 14px;
+  padding-top: 3px;
+  color: white;
+}
+
+.step .section {
+  margin-left: 34px;
+}
+
+.apikey {
+  display: flex;
+  align-items: center;
+}
+
+.apikey button {
+  margin-left: 4px;
+}
+
+#voiceOptions {
+  margin-top: 80px;
 }
 
 </style>
 <title>LMNT character.ai Speech Extension Options</title>
 </head>
 <body>
-  <div>
-    <a href="https://www.lmnt.com" target="_blank"><img src="./images/lmnt-logo.webp" class="logo" alt="LMNT, Inc. Logo"></a>
-  </div>
-    <h1>LMNT character.ai Speech Extension Options</h1>
-  <img src="./images/icon-128.png" alt="A sci-fi woman's profile image." class="anya">
-  <p>
-    The LMNT character.ai extension is developed solely for entertainment purposes and is not affiliated with <a href="https://www.character.ai" target="_blank">character.ai</a>.
-    It is intended to allow folks to experiment with the use of <a href="https://www.lmnt.com" target="_blank">LMNT-produced</a> AI-based synthetic speech to talk with their favorite characters.
-  </p>
+  <div class="centered">
+    <div>
+      <a href="https://www.lmnt.com" target="_blank"><img src="./images/lmnt-logo.webp" class="logo" alt="LMNT, Inc. Logo"></a>
+    </div>
+      <h1>LMNT character.ai Speech Extension</h1>
+    <img src="./images/icon-128.png" alt="A sci-fi woman's profile image." class="anya">
+    <div class="disclaimer section">
+      *For entertainment purposes only, and not affiliated with <a href="https://www.character.ai" target="_blank">character.ai</a>.
+    </div>
+    <div class="section">
+      Experiment with <a href="https://www.lmnt.com" target="_blank">LMNT-produced</a> AI speech and talk with your favorite characters.
+    </div>
+    <div class="step">
+      <div class="headline">
+        <div class="number">
+          1
+        </div>
+        Get an LMNT API key
+      </div>
+      <div class="section">
+        Visit the <a href="https://app.lmnt.com/account" target="_blank">LMNT account page</a> and create a new API key.
+      </div>
+      <div class="section apikey">
+        <form>
+          <label for="lmnt_api_key">Paste it here:</label>
+          <input name="lmnt_api_key" id="lmnt_api_key">
+        </form>
+        <button id="save">Save</button>
+      </div>
+      <div id="status" class="section"></div>
+    </div>
+    <div class="step">
+      <div class="headline">
+        <div class="number">
+          2
+        </div>
+        <div>
+          Go to <a href="https://character.ai" target="_blank">character.ai</a>
+        </div>
+      </div>
+      <div class="section">
+        Chat with someone...and make sure you have your volume up.
+      </div>
+      <div class="section">
+        Have fun!
+      </div>
+    </div>
 
-  <p>
-    For the extension to operate, you'll need an LMNT API key. Please visit the
-    <a href="https://app.lmnt.com/account" target="_blank">LMNT account page</a>, create a new API key, copy the key
-    and paste it into the field below.
-  </p>
-
-  <form>
-    <label for="lmnt_api_key">LMNT API Key</label>
-    <input name="lmnt_api_key" id="lmnt_api_key">
-  </form>
-  <button id="save">Save</button>
-
-  <div id="status"></div>
-
-  <div id="voiceOptions" style="display: hidden;">
-    <hr>
-    <h2>Voice Options</h2>
-    <label for="voiceSelect">Default voice</label>
-    <select id="voiceSelect"></select>
+    <div id="voiceOptions" style="display: none;">
+      <hr>
+      <h2>Additional options</h2>
+      <label for="voiceSelect">Default voice:</label>
+      <select id="voiceSelect"></select>
+    </div>
   </div>
 <script src="scripts/options.js"></script>
 </body>
